@@ -16,8 +16,8 @@
         <serenity.version>4.2.22</serenity.version>
         <cucumber.version>7.20.1</cucumber.version>
         <junit.jupiter.version>5.11.4</junit.jupiter.version>
-        <webdriver.base.url></webdriver.base.url>
-        <tags></tags>
+        <webdriver.base.url>http://127.0.0.1:8085/student/</webdriver.base.url>
+        <tags>@regression</tags>
     </properties>
 
     <dependencies>
