@@ -13,14 +13,38 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <serenity.version>4.2.22</serenity.version>
+        <serenity.version>4.2.34</serenity.version>
         <cucumber.version>7.20.1</cucumber.version>
-        <junit.jupiter.version>5.11.4</junit.jupiter.version>
+<!--        <junit.jupiter.version>5.12.2</junit.jupiter.version>-->
         <webdriver.base.url>http://127.0.0.1:8085/student/</webdriver.base.url>
         <tags>@regression</tags>
     </properties>
 
     <dependencies>
+
+
+
+        <dependency>
+            <groupId>net.serenity-bdd</groupId>
+            <artifactId>serenity-core</artifactId>
+            <version>${serenity.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>net.serenity-bdd</groupId>
+            <artifactId>serenity-junit</artifactId>   <!-- 👈 потрібен саме цей для JUnit4 -->
+            <version>${serenity.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>net.serenity-bdd</groupId>
+            <artifactId>serenity-rest-assured</artifactId> <!-- 👈 інтеграція RestAssured -->
+            <version>${serenity.version}</version>
+            <scope>test</scope>
+        </dependency>
+
         <dependency>
             <groupId>net.bytebuddy</groupId>
             <artifactId>byte-buddy</artifactId>
@@ -60,7 +84,7 @@
         <dependency>
             <groupId>org.junit.platform</groupId>
             <artifactId>junit-platform-suite-engine</artifactId>
-            <version>1.10.0</version>
+            <version>1.13.1</version>
             <scope>test</scope>
         </dependency>
         <!-- REST Assured -->
@@ -116,18 +140,18 @@
         </dependency>
 
         <!-- JUnit 5 -->
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter</artifactId>
-            <version>${junit.jupiter.version}</version>
-            <scope>test</scope>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.junit.jupiter</groupId>-->
+<!--            <artifactId>junit-jupiter</artifactId>-->
+<!--            <version>${junit.jupiter.version}</version>-->
+<!--            <scope>test</scope>-->
+<!--        </dependency>-->
 
         <!-- Logging and Assertions -->
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
-            <version>1.2.10</version>
+            <version>1.5.18</version>
         </dependency>
         <dependency>
             <groupId>org.assertj</groupId>
@@ -138,7 +162,7 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.13.1</version>
+            <version>4.13.2</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -200,6 +224,30 @@
                     <reports>single-page-html</reports>
                 </configuration>
                 <executions>
+                    <execution>
+                        <id>serenity-reports</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
+                            <goal>aggregate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>net.serenity-bdd.maven.plugins</groupId>
+                <artifactId>serenity-maven-plugin</artifactId>
+                <version>${serenity.version}</version>
+                <configuration>
+                    <tags>${tags}</tags>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>check-feature-files</id>
+                        <phase>process-test-resources</phase>
+                        <goals>
+                            <goal>check-gherkin</goal>
+                        </goals>
+                    </execution>
                     <execution>
                         <id>serenity-reports</id>
                         <phase>post-integration-test</phase>
