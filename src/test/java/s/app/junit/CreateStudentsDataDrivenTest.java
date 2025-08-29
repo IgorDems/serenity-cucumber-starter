@@ -1,23 +1,19 @@
 package s.app.junit;
 
-import java.util.ArrayList;
-
 import com.app.TestBase;
 import com.app.serenity.StudentSerenitySteps;
-import io.cucumber.junit.CucumberSerenityRunner;
+import net.serenitybdd.annotations.Steps;
+import net.serenitybdd.annotations.Title;
 import net.serenitybdd.junit.runners.SerenityRunner;
-import org.junit.Ignore;
+import net.serenitybdd.rest.SerenityRest;
+import net.thucydides.junit.annotations.Concurrent;
+import net.thucydides.junit.annotations.UseTestDataFrom;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-
-
-
-import net.serenitybdd.junit.runners.SerenityParameterizedRunner;
-import net.serenitybdd.annotations.Title;
-import net.serenitybdd.annotations.Steps;
-import net.thucydides.junit.annotations.Concurrent;
-import net.thucydides.junit.annotations.UseTestDataFrom;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Objects;
 
 @Concurrent(threads="4x")
 @UseTestDataFrom("testdata/studentinfo.csv")
@@ -78,6 +74,7 @@ public class CreateStudentsDataDrivenTest extends TestBase {
 	private String programme;
 	private String course;
 
+
 	@Steps
 	StudentSerenitySteps steps;
 	
@@ -89,7 +86,30 @@ public class CreateStudentsDataDrivenTest extends TestBase {
 		courses.add(course);
 		
 		steps.createStudent(firstName, lastName, email, programme, courses)
-		.statusCode(201);
+                .statusCode(201);
 		
 	}
+
+    @Test
+    public void test001(){
+
+        String p1 = "findAll{it.firstName='";
+        String p2 = "'}.get(0)";
+
+        HashMap<String, Objects> value =
+        SerenityRest.rest().given()
+                .when()
+                .get("/list")
+                .then()
+                .log()
+                .all()
+                .statusCode(200)
+                .extract()
+                .path(p1+firstName+p2);
+
+        System.out.println(value);
+    }
+
+
+
 }

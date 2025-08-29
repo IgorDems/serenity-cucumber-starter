@@ -23,7 +23,6 @@
     <dependencies>
 
 
-
         <dependency>
             <groupId>net.serenity-bdd</groupId>
             <artifactId>serenity-core</artifactId>
@@ -34,13 +33,6 @@
         <dependency>
             <groupId>net.serenity-bdd</groupId>
             <artifactId>serenity-junit</artifactId>   <!-- 👈 потрібен саме цей для JUnit4 -->
-            <version>${serenity.version}</version>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>net.serenity-bdd</groupId>
-            <artifactId>serenity-rest-assured</artifactId> <!-- 👈 інтеграція RestAssured -->
             <version>${serenity.version}</version>
             <scope>test</scope>
         </dependency>
@@ -67,39 +59,36 @@
             <artifactId>jna</artifactId>
             <version>5.14.0</version>
         </dependency>
+
         <dependency>
             <groupId>net.java.dev.jna</groupId>
             <artifactId>jna-platform</artifactId>
             <version>5.14.0</version>
         </dependency>
-        <!-- JUnit Platform Suite API -->
-        <dependency>
-            <groupId>org.junit.platform</groupId>
-            <artifactId>junit-platform-suite-api</artifactId>
-            <version>1.10.0</version>
-            <scope>test</scope>
-        </dependency>
 
-        <!-- JUnit Platform Suite Engine -->
-        <dependency>
-            <groupId>org.junit.platform</groupId>
-            <artifactId>junit-platform-suite-engine</artifactId>
-            <version>1.13.1</version>
-            <scope>test</scope>
-        </dependency>
+<!--        &lt;!&ndash; JUnit Platform Suite API &ndash;&gt;-->
+
+<!--        <dependency>-->
+<!--            <groupId>org.junit.platform</groupId>-->
+<!--            <artifactId>junit-platform-suite-api</artifactId>-->
+<!--            <version>1.10.0</version>-->
+<!--            <scope>test</scope>-->
+<!--        </dependency>-->
+
+<!--        &lt;!&ndash; JUnit Platform Suite Engine &ndash;&gt;-->
+
+<!--        <dependency>-->
+<!--            <groupId>org.junit.platform</groupId>-->
+<!--            <artifactId>junit-platform-suite-engine</artifactId>-->
+<!--            <version>1.13.1</version>-->
+<!--            <scope>test</scope>-->
+<!--        </dependency>-->
+
         <!-- REST Assured -->
         <dependency>
             <groupId>io.rest-assured</groupId>
             <artifactId>rest-assured</artifactId>
             <version>5.5.6</version>
-            <scope>test</scope>
-        </dependency>
-
-        <!-- Serenity Core -->
-        <dependency>
-            <groupId>net.serenity-bdd</groupId>
-            <artifactId>serenity-core</artifactId>
-            <version>${serenity.version}</version>
             <scope>test</scope>
         </dependency>
 
@@ -132,12 +121,12 @@
         </dependency>
 
         <!-- Cucumber JUnit Platform Engine -->
-        <dependency>
-            <groupId>io.cucumber</groupId>
-            <artifactId>cucumber-junit-platform-engine</artifactId>
-            <version>${cucumber.version}</version>
-            <scope>test</scope>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>io.cucumber</groupId>-->
+<!--            <artifactId>cucumber-junit-platform-engine</artifactId>-->
+<!--            <version>${cucumber.version}</version>-->
+<!--            <scope>test</scope>-->
+<!--        </dependency>-->
 
         <!-- JUnit 5 -->
 <!--        <dependency>-->
@@ -165,6 +154,13 @@
             <version>4.13.2</version>
             <scope>test</scope>
         </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.junit.vintage</groupId>-->
+<!--            <artifactId>junit-vintage-engine</artifactId>-->
+<!--            <version>5.10.2</version> &lt;!&ndash; Match your JUnit 5 platform version &ndash;&gt;-->
+<!--            <scope>test</scope>-->
+<!--        </dependency>-->
+
     </dependencies>
 
     <build>
@@ -233,30 +229,7 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <groupId>net.serenity-bdd.maven.plugins</groupId>
-                <artifactId>serenity-maven-plugin</artifactId>
-                <version>${serenity.version}</version>
-                <configuration>
-                    <tags>${tags}</tags>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>check-feature-files</id>
-                        <phase>process-test-resources</phase>
-                        <goals>
-                            <goal>check-gherkin</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>serenity-reports</id>
-                        <phase>post-integration-test</phase>
-                        <goals>
-                            <goal>aggregate</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+<!--            -->
         </plugins>
     </build>
 </project>

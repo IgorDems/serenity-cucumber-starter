@@ -21,7 +21,7 @@ public class FirstSerenityTest {
 	
 	@BeforeClass
 	public static void init(){
-		RestAssured.baseURI="http://localhost:8080/student";
+		RestAssured.baseURI="http://127.0.0.1:8085/student";
 	}
 	
 	@Test
@@ -39,7 +39,7 @@ public class FirstSerenityTest {
 		.when()
 		.get("/list")
 		.then()
-		.statusCode(500);
+		.statusCode(200);
 	}
 	
 	@Pending

@@ -5,7 +5,6 @@ import java.util.List;
 
 
 import appmodel.StudentClass;
-import io.restassured.http.ContentType;
 import io.restassured.response.ValidatableResponse;
 import net.serenitybdd.annotations.Step;
 import net.serenitybdd.rest.SerenityRest;
