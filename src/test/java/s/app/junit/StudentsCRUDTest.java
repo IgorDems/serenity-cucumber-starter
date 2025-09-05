@@ -7,6 +7,7 @@ import java.util.HashMap;
 import appmodel.StudentClass;
 import com.app.TestBase;
 import com.app.serenity.StudentSerenitySteps;
+import net.serenitybdd.annotations.Step;
 import org.junit.FixMethodOrder;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -37,6 +38,8 @@ public class StudentsCRUDTest extends TestBase {
     static String email = TestUtils.getRandomValue()+"xyz1@gmail.com";
     static int studentId;
 
+    @Steps
+    StudentSerenitySteps steps;
 
 
     @Test
@@ -67,8 +70,8 @@ public class StudentsCRUDTest extends TestBase {
 
     }
 
-    @Steps
-    StudentSerenitySteps steps;
+//    @Steps
+//    StudentSerenitySteps steps;
 
 
 
@@ -149,6 +152,7 @@ public class StudentsCRUDTest extends TestBase {
 
 
 //    @Ignore
+
     @Title("Delete the student and verify if the student is deleted!")
     @Test
     public void test008(){

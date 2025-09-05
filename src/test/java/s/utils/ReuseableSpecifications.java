@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
 
 public class ReuseableSpecifications {
 	
-	public static RequestSpecBuilder rspec;
+	public static RequestSpecBuilder rqspec;
 	public static RequestSpecification requestSpecification;
 	
 	public static ResponseSpecBuilder respec;
@@ -20,9 +20,9 @@ public class ReuseableSpecifications {
 	
 	public static RequestSpecification getGenericRequestSpec(){
 	
-		rspec = new RequestSpecBuilder();
-		rspec.setContentType(ContentType.JSON);
-		requestSpecification = rspec.build();
+		rqspec = new RequestSpecBuilder();
+		rqspec.setContentType(ContentType.JSON);
+		requestSpecification = rqspec.build();
 		return requestSpecification;
 		
 	}
