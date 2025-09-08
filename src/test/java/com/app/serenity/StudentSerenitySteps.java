@@ -10,6 +10,9 @@ import net.serenitybdd.annotations.Step;
 import net.serenitybdd.rest.SerenityRest;
 import s.utils.ReuseableSpecifications;
 
+import static org.hamcrest.core.AnyOf.anyOf;
+import static org.hamcrest.core.Is.is;
+
 
 public class StudentSerenitySteps {
 
@@ -70,9 +73,8 @@ public class StudentSerenitySteps {
 	public  void deleteStudent(int studentId) {
 		SerenityRest.rest().given().when().delete("/" + studentId);
 	}
-	
 
-	@Step("Getting information of the student with ID: {0}")
+    @Step("Getting information of the student with ID: {0}")
 	public ValidatableResponse getStudentById(int studentId){
 		return 
 		SerenityRest
@@ -82,4 +84,37 @@ public class StudentSerenitySteps {
 		.get("/" + studentId).then();
 		
 	}
+
+    @Step("Get list of all students")
+    public List<Integer> getAllStudentIds() {
+        return SerenityRest.rest()
+                .given()
+                .when()
+                .get("/list")
+                .then()
+                .statusCode(200)
+                .extract()
+                .path("id");   // отримує список усіх id
+    }
+
+    @Step("Delete student by ID: {0}")
+    public void deleteStudentById(int studentId) {
+        SerenityRest.rest()
+                .given()
+                .when()
+                .delete("/" + studentId)
+                .then()
+                .statusCode(anyOf(is(200), is(204))); // залежно від API
+    }
+
+    @Step("Verify student {0} does not exist")
+    public void verifyStudentDeleted(int studentId) {
+        SerenityRest.rest()
+                .given()
+                .when()
+                .get("/" + studentId)
+                .then()
+                .statusCode(404);
+    }
+
 }

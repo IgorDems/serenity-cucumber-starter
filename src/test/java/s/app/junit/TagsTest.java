@@ -6,13 +6,8 @@ import net.serenitybdd.annotations.WithTag;
 import net.serenitybdd.annotations.WithTags;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
-
-
 import net.serenitybdd.junit.runners.SerenityRunner;
 import net.serenitybdd.rest.SerenityRest;
-
-
 
 @RunWith(SerenityRunner.class)
 public class TagsTest extends TestBase {
