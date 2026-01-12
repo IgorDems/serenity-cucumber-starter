@@ -7,7 +7,9 @@ import java.util.HashMap;
 import appmodel.StudentClass;
 import com.app.TestBase;
 import com.app.serenity.StudentSerenitySteps;
-import net.serenitybdd.annotations.Step;
+//import net.serenitybdd.annotations.Step;
+import io.cucumber.junit.Cucumber;
+import io.restassured.RestAssured;
 import org.junit.FixMethodOrder;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -15,11 +17,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
 
-import net.serenitybdd.annotations.Title;
-import net.serenitybdd.annotations.Steps;
+//import net.serenitybdd.annotations.Title;
+//import net.serenitybdd.annotations.Steps;
 import io.restassured.http.ContentType;
-import net.serenitybdd.junit.runners.SerenityRunner;
-import net.serenitybdd.rest.SerenityRest;
+//import net.serenitybdd.junit.runners.SerenityRunner;
+//import net.serenitybdd.rest.SerenityRest;
 import s.utils.ReuseableSpecifications;
 import s.utils.TestUtils;
 
@@ -28,7 +30,7 @@ import static org.junit.Assert.*;
 
 
 
-@RunWith(SerenityRunner.class)
+@RunWith(Cucumber.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class StudentsCRUDTest extends TestBase {
 
@@ -38,8 +40,8 @@ public class StudentsCRUDTest extends TestBase {
     static String email = TestUtils.getRandomValue()+"xyz1@gmail.com";
     static int studentId;
 
-    @Steps
-    StudentSerenitySteps steps;
+//    @Steps
+//    StudentSerenitySteps steps;
 
 
     @Test
@@ -56,7 +58,7 @@ public class StudentsCRUDTest extends TestBase {
         student.setProgramme(programme);
         student.setCourses(courses);
 
-        SerenityRest.given()
+        RestAssured.given()
                 .contentType(ContentType.JSON)
                 .log()
                 .all()
@@ -75,7 +77,7 @@ public class StudentsCRUDTest extends TestBase {
 
 
 
-    @Title("Verify if the student was added to the application")
+//    @Title("Verify if the student was added to the application")
     @Test
     public void test002(){
 
@@ -88,7 +90,7 @@ public class StudentsCRUDTest extends TestBase {
 
     }
 
-    @Title("Update the user information and verify the updated information!")
+//    @Title("Update the user information and verify the updated information!")
     @Test
     public void test003(){
 

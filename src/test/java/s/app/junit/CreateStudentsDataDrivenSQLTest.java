@@ -3,11 +3,13 @@ package s.app.junit;
 import com.app.TestBase;
 import com.app.serenity.StudentSerenitySteps;
 import connection.MyDBCon;
-import net.serenitybdd.annotations.Steps;
-import net.serenitybdd.annotations.Title;
-import net.serenitybdd.junit.runners.SerenityRunner;
-import net.serenitybdd.rest.SerenityRest;
-import net.thucydides.junit.annotations.Concurrent;
+//import net.serenitybdd.annotations.Steps;
+//import net.serenitybdd.annotations.Title;
+//import net.serenitybdd.junit.runners.SerenityRunner;
+//import net.serenitybdd.rest.SerenityRest;
+//import net.thucydides.junit.annotations.Concurrent;
+import io.cucumber.junit.Cucumber;
+import io.restassured.RestAssured;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,13 +24,13 @@ import java.util.Objects;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-@Concurrent(threads="2x")
-@RunWith(SerenityRunner.class)
+//@Concurrent(threads="2x")
+@RunWith(Cucumber.class)
 public class CreateStudentsDataDrivenSQLTest extends TestBase {
 
     private static List<StudentRecord> studentData = new ArrayList<>();
 
-    @Steps
+//    @Steps
     StudentSerenitySteps steps;
 
     // DTO для збереження даних
@@ -98,16 +100,16 @@ public class CreateStudentsDataDrivenSQLTest extends TestBase {
     }
 
 
-    @Title("DataDriven Test for adding multiple students to the Student App.")
+//    @Title("DataDriven Test for adding multiple students to the Student App.")
     @Test
     public void createMultiplestudents(){
         for (StudentRecord student : studentData) {
             ArrayList<String> courses = new ArrayList<>();
             courses.add(student.course);
 
-            steps.createStudent(student.firstName, student.lastName,
-                            student.email, student.programme, courses)
-                    .statusCode(201);
+//            steps.createStudent(student.firstName, student.lastName,
+//                            student.email, student.programme, courses)
+//                    .statusCode(201);
 
             System.out.printf("Inserted student: %s %s, %s, %s, %s%n",
                     student.firstName, student.lastName, student.email, student.programme, student.course);
@@ -123,7 +125,7 @@ public class CreateStudentsDataDrivenSQLTest extends TestBase {
         String p2 = "'}.get(0)";
 
         HashMap<String, Objects> value =
-                SerenityRest.rest().given()
+                RestAssured.given()
                         .when()
                         .get("/list")
                         .then()

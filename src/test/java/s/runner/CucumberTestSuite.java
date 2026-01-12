@@ -18,15 +18,16 @@ package s.runner;
 //}
 
 
+import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
-import net.serenitybdd.cucumber.CucumberWithSerenity;
+//import net.serenitybdd.cucumber.CucumberWithSerenity;
 import org.junit.runner.RunWith;
 
-@RunWith(CucumberWithSerenity.class)
+@RunWith(Cucumber.class)
 @CucumberOptions(
         plugin = {"pretty"},
-        features = "src/test/resources/features",
-        glue = "starter.stepdefinitions",
+        features = "src/test/resources/features/search/student.feature",
+        glue = "src/test/java/starter/stepdefinitions/StudentStepDefinitions",
         tags = "@regression"
 )
 public class CucumberTestSuite {

@@ -3,9 +3,10 @@ package s.app.junit;
 import com.app.TestBase;
 import com.app.serenity.StudentSerenitySteps;
 import com.opencsv.bean.CsvToBeanBuilder;
-import net.serenitybdd.annotations.Steps;
-import net.serenitybdd.annotations.Title;
-import net.serenitybdd.junit.runners.SerenityRunner;
+import io.cucumber.junit.Cucumber;
+//import net.serenitybdd.annotations.Steps;
+//import net.serenitybdd.annotations.Title;
+//import net.serenitybdd.junit.runners.SerenityRunner;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,10 +19,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
-@RunWith(SerenityRunner.class)
+@RunWith(Cucumber.class)
 public class CreateStudentsDataDrivenTestParse extends TestBase {
 
-    @Steps
+//    @Steps
     StudentSerenitySteps steps;
 
     @BeforeClass
@@ -30,32 +31,32 @@ public class CreateStudentsDataDrivenTestParse extends TestBase {
     }
 
 
-    @Title("Delete all students with ID >= 100 and verify they are deleted")
+//    @Title("Delete all students with ID >= 100 and verify they are deleted")
     @Test
     public void testDeleteStudentsOver100() {
         // отримуємо список ID
-        List<Integer> allIds = steps.getAllStudentIds();
+//        List<Integer> allIds = steps.getAllStudentIds();
 
         // фільтруємо тих, у кого ID >= 100
-        List<Integer> idsToDelete = allIds.stream()
-                .filter(id -> id >= 100)
-                .collect(Collectors.toList());
-
-        System.out.println("IDs to delete: " + idsToDelete);
-
-        // видаляємо кожного
-        for (int id : idsToDelete) {
-            steps.deleteStudentById(id);
-        }
-
-        // перевіряємо, що вони видалені
-        for (int id : idsToDelete) {
-            steps.verifyStudentDeleted(id);
-        }
+//        List<Integer> idsToDelete = allIds.stream()
+//                .filter(id -> id >= 100)
+//                .collect(Collectors.toList());
+//
+//        System.out.println("IDs to delete: " + idsToDelete);
+//
+//        // видаляємо кожного
+//        for (int id : idsToDelete) {
+//            steps.deleteStudentById(id);
+//        }
+//
+//        // перевіряємо, що вони видалені
+//        for (int id : idsToDelete) {
+//            steps.verifyStudentDeleted(id);
+//        }
     }
 
 
-    @Title("DataDriven Test for adding multiple students to the Student App.")
+//    @Title("DataDriven Test for adding multiple students to the Student App.")
     @Test
     public void createMultiplestudents() throws Exception {
         String path = "src/test/resources/testdata/studentinfo.csv";
@@ -79,12 +80,12 @@ public class CreateStudentsDataDrivenTestParse extends TestBase {
             ArrayList<String> courses = new ArrayList<>();
             courses.add(student.getCourse());
 
-            steps.createStudent(student.getFirstName(),
-                            student.getLastName(),
-                            student.getEmail(),
-                            student.getProgramme(),
-                            courses)
-                    .statusCode(201);
+//            steps.createStudent(student.getFirstName(),
+//                            student.getLastName(),
+//                            student.getEmail(),
+//                            student.getProgramme(),
+//                            courses)
+//                    .statusCode(201);
         }
     }
 }

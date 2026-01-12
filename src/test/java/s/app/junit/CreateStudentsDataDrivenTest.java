@@ -2,13 +2,14 @@ package s.app.junit;
 
 import com.app.TestBase;
 import com.app.serenity.StudentSerenitySteps;
+import io.cucumber.junit.Cucumber;
 import s.utils.CsvReaderExample;
-import net.serenitybdd.annotations.Steps;
-import net.serenitybdd.annotations.Title;
-import net.serenitybdd.junit.runners.SerenityRunner;
-import net.serenitybdd.rest.SerenityRest;
-import net.thucydides.junit.annotations.Concurrent;
-import net.thucydides.junit.annotations.UseTestDataFrom;
+//import net.serenitybdd.annotations.Steps;
+//import net.serenitybdd.annotations.Title;
+//import net.serenitybdd.junit.runners.SerenityRunner;
+//import net.serenitybdd.rest.SerenityRest;
+//import net.thucydides.junit.annotations.Concurrent;
+//import net.thucydides.junit.annotations.UseTestDataFrom;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -19,8 +20,8 @@ import java.util.Objects;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-@Concurrent(threads="2x")
-@RunWith(SerenityRunner.class)
+//@Concurrent(threads="2x")
+@RunWith(Cucumber.class)
 public class CreateStudentsDataDrivenTest extends TestBase {
     String path = "src/test/resources/testdata/studentinfo.csv";
 

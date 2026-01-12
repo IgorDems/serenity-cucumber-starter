@@ -4,19 +4,20 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 
-import net.serenitybdd.annotations.Manual;
-import net.serenitybdd.annotations.Pending;
-import net.serenitybdd.annotations.Title;
+//import net.serenitybdd.annotations.Manual;
+//import net.serenitybdd.annotations.Pending;
+//import net.serenitybdd.annotations.Title;
+import io.cucumber.junit.Cucumber;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import io.restassured.RestAssured;
-import net.serenitybdd.junit.runners.SerenityRunner;
-import net.serenitybdd.rest.SerenityRest;
+//import net.serenitybdd.junit.runners.SerenityRunner;
+//import net.serenitybdd.rest.SerenityRest;
 
-@RunWith(SerenityRunner.class)
+@RunWith(Cucumber.class)
 public class FirstSerenityTest {
 	
 	@BeforeClass
@@ -26,7 +27,7 @@ public class FirstSerenityTest {
 	
 	@Test
 	public void getAllStudents(){
-		SerenityRest.given()
+		RestAssured.given()
 		.when()
 		.get("/list")
 		.then()
@@ -35,14 +36,14 @@ public class FirstSerenityTest {
 	
 	@Test
 	public void thisIsaFailing(){
-		SerenityRest.given()
+        RestAssured.given()
 		.when()
 		.get("/list")
 		.then()
 		.statusCode(200);
 	}
 	
-	@Pending
+//	@Pending
 	@Test
 	public void thisIsAPendingTest(){
 		
@@ -67,16 +68,16 @@ public class FirstSerenityTest {
 		FileReader fr = new FileReader(file);
 	}
 	
-	@Manual
+//	@Manual
 	@Test
 	public void thisIsAManualTest() {
 	
 	}
 	
-	@Title("This test will get the information of all the students from the Student App")
+//	@Title("This test will get the information of all the students from the Student App")
 	@Test
 	public void test01(){
-		SerenityRest.given()
+		RestAssured.given()
 		.when()
 		.get("/list")
 		.then()
